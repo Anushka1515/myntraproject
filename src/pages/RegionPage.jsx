@@ -3,6 +3,7 @@ import NavBar from "../components/NavBar";
 import { useLocation, useNavigation } from "react-router-dom";
 import "./regionpage.css"
 import Card from "../components/Card";
+import axios from "axios";
 
 const RegionPage = () => {
 
@@ -81,29 +82,39 @@ const RegionPage = () => {
 
   const [filterData, setFilterData] = useState([]);
   const [currentRegion, setCurrentRegion] = useState("");
+  const [articles, setArticles] = useState([])
 
   useEffect(() => {
     setCurrentRegion(lastPath); // Update currentEra when lastPath changes
   }, [lastPath]);
-
-  // useEffect(async()=>{
-  //   try {
-  //     const response = await axios.post('http://127.0.0.1:5000/predict', {
-  //       location:currentRegion,
-  //       gender:"Female",
-  //     });
-  //     setArticles(response.data);
-  //   } catch (error) {
-  //     console.error('Error fetching recommendations:', error);
-  //   }
-  // })
+  
+  const fetchData = async () => {
+    try {
+      const response = await axios.post('http://127.0.0.1:5000/predict', {
+        location: currentRegion[0].toUpperCase() + currentRegion.slice(1),
+        gender: "Women",
+      });
+      setArticles(response.data);
+      
+    } catch (error) {
+      console.error('Error fetching recommendations:', error);
+    }
+  };
+  useEffect(() => {
+    
+  
+    fetchData();
+  }, [currentRegion]);
+  
 
   return (
     <>
       <NavBar />
+      {console.log(currentRegion)}
+      {console.log(articles)}
       <div className="container">
       <div className="Card-Container">
-      {data2.map((card, index) => (
+      {articles.map((card, index) => (
         <Card key={index} data={card} />
       ))}
     </div>

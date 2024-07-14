@@ -3,12 +3,12 @@
 .card {
   display: flex;
   flex-direction: column;
-  width: max-content;
+  width: 18vw;
   
 }
 
 .card img {
-  width: 15vw;
+  width: 17vw;
   height: auto;
 }
 
