@@ -1,248 +1,256 @@
 import React, { useEffect, useState } from "react";
 import NavBar from "../components/NavBar";
+import EraCard from "../components/EraCard";
 import { useLocation, useNavigation } from "react-router-dom";
+import Pants from "./image/brown pants.png"
+import Blouse from "./image/blue blouse.png"
+import Shirt from "./image/white shirt.png"
+import Skirt from "./image/green skirt .png"
+import Cardigan from "./image/yellowcardigan.png"
+import Dress from "./image/pink dress.png"
+import "./EraPage.css"
 
 const EraPage = () => {
   const data = [
     {
-      "Item Name": "Jacket",
+      "ItemName": "Jacket",
       'Era': "40s",
       'Color': "Brown",
       'Length': "Long",
       'Material': "Wool",
-      "Image URL": "http://example.com/jacket_40s.jpg",
+      "Link": "http://example.com/jacket_40s.jpg",
     },
     {
-      "Item Name": "Blouse",
+      "ItemName": "Blouse",
       'Era': "40s",
       'Color': "White",
       'Length': "Medium",
       'Material': "Silk",
-      "Image URL": "http://example.com/blouse_40s.jpg",
+      "Link": "http://example.com/blouse_40s.jpg",
     },
     {
-      "Item Name": "Skirt",
+      "ItemName": "Skirt",
       'Era': "40s",
       'Color': "Navy",
       'Length': "Long",
       'Material': "Cotton",
-      "Image URL": "http://example.com/skirt_40s.jpg",
+      "Link": "http://example.com/skirt_40s.jpg",
     },
     {
-      "Item Name": "Dress",
+      "ItemName": "Dress",
       'Era': "40s",
       'Color': "Red",
       'Length': "Long",
       'Material': "Wool",
-      "Image URL": "http://example.com/dress_40s.jpg",
+      "Link": "http://example.com/dress_40s.jpg",
     },
     {
-      "Item Name": "Hat",
+      "ItemName": "Hat",
       'Era': "40s",
       'Color': "Black",
       'Length': "Short",
       'Material': "Felt",
-      "Image URL": "http://example.com/hat_40s.jpg",
+      "Link": "http://example.com/hat_40s.jpg",
     },
     {
-      "Item Name": "Coat",
+      "ItemName": "Coat",
       'Era': "40s",
       'Color': "Gray",
       'Length': "Long",
       'Material': "Wool",
-      "Image URL": "http://example.com/coat_40s.jpg",
+      "Link": "http://example.com/coat_40s.jpg",
     },
     {
-      "Item Name": "Shirt",
+      "ItemName": "Shirt",
       'Era': "50s",
       'Color': "White",
       'Length': "Medium",
       'Material': "Cotton",
-      "Image URL": "http://example.com/shirt_50s.jpg",
+      "Link": Shirt,
     },
     {
-      "Item Name": "Dress",
+      "ItemName": "Dress",
       'Era': "50s",
       'Color': "Pink",
       'Length': "Long",
       'Material': "Silk",
-      "Image URL": "http://example.com/dress_50s.jpg",
+      "Link": Dress,
     },
     {
-      "Item Name": "Cardigan",
+      "ItemName": "Cardigan",
       'Era': "50s",
       'Color': "Yellow",
       'Length': "Medium",
       'Material': "Wool",
-      "Image URL": "http://example.com/cardigan_50s.jpg",
+      "Link": Cardigan,
     },
     {
-      "Item Name": "Skirt",
+      "ItemName": "Skirt",
       'Era': "50s",
       'Color': "Green",
       'Length': "Medium",
       'Material': "Cotton",
-      "Image URL": "http://example.com/skirt_50s.jpg",
+      "Link": Skirt,
     },
     {
-      "Item Name": "Blouse",
+      "ItemName": "Blouse",
       'Era': "50s",
       'Color': "Blue",
       'Length': "Short",
       'Material': "Silk",
-      "Image URL": "http://example.com/blouse_50s.jpg",
+      "Link": Blouse,
     },
     {
-      "Item Name": "Pants",
+      "ItemName": "Pants",
       'Era': "50s",
       'Color': "Brown",
       'Length': "Long",
       'Material': "Wool",
-      "Image URL": "http://example.com/pants_50s.jpg",
+      "Link": Pants,
     },
     {
-      "Item Name": "Skirt",
+      "ItemName": "Skirt",
       'Era': "60s",
       'Color': "Red",
       'Length': "Short",
       'Material': "Polyester",
-      "Image URL": "http://example.com/skirt_60s.jpg",
+      "Link": "http://example.com/skirt_60s.jpg",
     },
     {
-      "Item Name": "Dress",
+      "ItemName": "Dress",
       'Era': "60s",
       'Color': "Orange",
       'Length': "Long",
       'Material': "Cotton",
-      "Image URL": "http://example.com/dress_60s.jpg",
+      "Link": "http://example.com/dress_60s.jpg",
     },
     {
-      "Item Name": "Trousers",
+      "ItemName": "Trousers",
       'Era': "60s",
       'Color': "Black",
       'Length': "Long",
       'Material': "Wool",
-      "Image URL": "http://example.com/trousers_60s.jpg",
+      "Link": "http://example.com/trousers_60s.jpg",
     },
     {
-      "Item Name": "Blouse",
+      "ItemName": "Blouse",
       'Era': "60s",
       'Color': "Purple",
       'Length': "Medium",
       'Material': "Silk",
-      "Image URL": "http://example.com/blouse_60s.jpg",
+      "Link": "http://example.com/blouse_60s.jpg",
     },
     {
-      "Item Name": "Jacket",
+      "ItemName": "Jacket",
       'Era': "60s",
       'Color': "Green",
       'Length': "Short",
       'Material': "Cotton",
-      "Image URL": "http://example.com/jacket_60s.jpg",
+      "Link": "http://example.com/jacket_60s.jpg",
     },
     {
-      "Item Name": "Shirt",
+      "ItemName": "Shirt",
       'Era': "60s",
       'Color': "Blue",
       'Length': "Medium",
       'Material': "Polyester",
-      "Image URL": "http://example.com/shirt_60s.jpg",
+      "Link": "http://example.com/shirt_60s.jpg",
     },
     {
-      "Item Name": "Dress",
+      "ItemName": "Dress",
       'Era': "90s",
       'Color': "Black",
       'Length': "Long",
       'Material': "Silk",
-      "Image URL": "http://example.com/dress_90s.jpg",
+      "Link": "http://example.com/dress_90s.jpg",
     },
     {
-      "Item Name": "T-Shirt",
+      "ItemName": "T-Shirt",
       'Era': "90s",
       'Color': "White",
       'Length': "Short",
       'Material': "Cotton",
-      "Image URL": "http://example.com/tshirt_90s.jpg",
+      "Link": "http://example.com/tshirt_90s.jpg",
     },
     {
-      "Item Name": "Jeans",
+      "ItemName": "Jeans",
       'Era': "90s",
       'Color': "Blue",
       'Length': "Long",
       'Material': "Denim",
-      "Image URL": "http://example.com/jeans_90s.jpg",
+      "Link": "http://example.com/jeans_90s.jpg",
     },
     {
-      "Item Name": "Jacket",
+      "ItemName": "Jacket",
       'Era': "90s",
       'Color': "Green",
       'Length': "Medium",
       'Material': "Nylon",
-      "Image URL": "http://example.com/jacket_90s.jpg",
+      "Link": "http://example.com/jacket_90s.jpg",
     },
     {
-      "Item Name": "Skirt",
+      "ItemName": "Skirt",
       'Era': "90s",
       'Color': "Pink",
       'Length': "Short",
       'Material': "Polyester",
-      "Image URL": "http://example.com/skirt_90s.jpg",
+      "Link": "http://example.com/skirt_90s.jpg",
     },
     {
-      "Item Name": "Hoodie",
+      "ItemName": "Hoodie",
       'Era': "90s",
       'Color': "Gray",
       'Length': "Medium",
       'Material': "Fleece",
-      "Image URL": "http://example.com/hoodie_90s.jpg",
+      "Link": "http://example.com/hoodie_90s.jpg",
     },
     {
-      "Item Name": "T-Shirt",
+      "ItemName": "T-Shirt",
       'Era': "2000s",
       'Color': "Blue",
       'Length': "Short",
       'Material': "Cotton",
-      "Image URL": "http://example.com/tshirt_2000s.jpg",
+      "Link": "http://example.com/tshirt_2000s.jpg",
     },
     {
-      "Item Name": "Hoodie",
+      "ItemName": "Hoodie",
       'Era': "2000s",
       'Color': "Black",
       'Length': "Medium",
       'Material': "Fleece",
-      "Image URL": "http://example.com/hoodie_2000s.jpg",
+      "Link": "http://example.com/hoodie_2000s.jpg",
     },
     {
-      "Item Name": "Jeans",
+      "ItemName": "Jeans",
       'Era': "2000s",
       'Color': "Dark Blue",
       'Length': "Long",
       'Material': "Denim",
-      "Image URL": "http://example.com/jeans_2000s.jpg",
+      "Link": "http://example.com/jeans_2000s.jpg",
     },
     {
-      "Item Name": "Dress",
+      "ItemName": "Dress",
       'Era': "2000s",
       'Color': "Pink",
       'Length': "Short",
       'Material': "Silk",
-      "Image URL": "http://example.com/dress_2000s.jpg",
+      "Link": "http://example.com/dress_2000s.jpg",
     },
     {
-      "Item Name": "Jacket",
+      "ItemName": "Jacket",
       'Era': "2000s",
       'Color': "Brown",
       'Length': "Medium",
       'Material': "Leather",
-      "Image URL": "http://example.com/jacket_2000s.jpg",
+      "Link": "http://example.com/jacket_2000s.jpg",
     },
     {
-      "Item Name": "Skirt",
+      "ItemName": "Skirt",
       'Era': "2000s",
       'Color': "White",
       'Length': "Short",
       'Material': "Cotton",
-      "Image URL": "http://example.com/skirt_2000s.jpg",
+      "Link": "http://example.com/skirt_2000s.jpg",
     },
   ];
 
@@ -267,21 +275,9 @@ const EraPage = () => {
   return (
     <>
       <NavBar />
-      <div className="container">
+      <div className="card-container">
         {filterData.map((item, index) => (
-          <div className="card" key={index}>
-            <img src={item["Image URL"]} className="card-img-top" alt={item["Item Name"]} />
-            <div className="card-body">
-              <h5 className="card-title">{item["Item Name"]}</h5>
-              <p className="card-text">
-                Color: {item["Color"]}, Length: {item["Length"]}, Material: {item["Material"]}
-              </p>
-              {/* Example of a button to view more details */}
-              <a href="/" className="btn btn-primary">
-                View Details
-              </a>
-            </div>
-          </div>
+          <EraCard key = {index} data = {item}/>
         ))}
       </div>
     </>

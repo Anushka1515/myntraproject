@@ -209,7 +209,7 @@
   width: 374px;
   margin: 0 !important;
   position: absolute;
-  right: -235px;
+  right: 150px;
   bottom: 0;
   background-color: var(--color-gainsboro-200);
   flex-direction: row;
